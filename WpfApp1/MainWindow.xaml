@@ -3,17 +3,35 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Uc="clr-namespace:UCLibrary;assembly=UCLibrary"
+        xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Gestionnaire de contacts" Height="450" Width="800" >
     <Window.Resources>
         <Style x:Key="headerStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed"/>
-
         </Style>
+
+        <s:Double x:Key="DoubleTest">40</s:Double>
+        
+        
+        <BitmapImage x:Key="DefaultBitmap" UriSource="/Resources/defaultContact.png" />
+
+        <SolidColorBrush x:Key="LightGray" Color="LightGray"/>
+        <SolidColorBrush x:Key="LightBlue" Color="LightBlue"/>
+        <SolidColorBrush x:Key="Black" Color="Black"/>
     </Window.Resources>
-    <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-        <Menu HorizontalAlignment="Left" Name="Menu" Height="25" VerticalAlignment="Top" Width="792" VerticalContentAlignment="Top">
+    <!--<local:MainWindow>
+        <local:MainWindow.DefaultImg>
+            <StaticResource ResourceKey="DefaultBitmap"/>
+        </local:MainWindow.DefaultImg>
+    </local:MainWindow>-->
+    
+    
+    
+    <DockPanel Name="DockPan" Background="{StaticResource LightGray}">
+        <Menu Name="Menu" Height="25" DockPanel.Dock="Top">
             <MenuItem Header="Fichier" Name="miFichier" Height="25" Width="50">
                 <MenuItem Header="Quitter" HorizontalAlignment="Left" Height="25" Width="140"/>
             </MenuItem>
@@ -24,14 +42,21 @@
             </MenuItem>
             <MenuItem Header="Aide" Name="miAide" Height="25" Width="50"/>
         </Menu>
-        <ListView HorizontalAlignment="Left" Height="367" Margin="0,25,0,25" VerticalAlignment="Top" Width="168">
+        <StackPanel DockPanel.Dock="Bottom" Height="25">
+
+        </StackPanel>
+        <ListView DockPanel.Dock="Left" Width="168">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource headerStyle}">
                 </GridView>
             </ListView.View>
         </ListView>
-        <WrapPanel Name="DisplayArea" HorizontalAlignment="Left" Height="367" Margin="168,25,0,0" VerticalAlignment="Top" Width="624" Background="White">
+        <WrapPanel Name="DisplayArea" Background="White" DockPanel.Dock="Right">
+            
+            
+            <Uc:UCDetails />
             
         </WrapPanel>
-    </Grid>
+
+    </DockPanel>
 </Window>

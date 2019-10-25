@@ -24,5 +24,14 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        public static readonly DependencyProperty DefaultImageProperty = DependencyProperty.Register("DefaultImg", typeof(BitmapImage), typeof(MainWindow));
+
+        public BitmapImage DefaultImg
+        {
+            get { return (BitmapImage)GetValue(DefaultImageProperty); }
+            set { SetValue(DefaultImageProperty, value); }
+        }
+
     }
 }
