@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ViewModelLibrary;
 
 namespace UCLibrary
 {
     /// <summary>
-    /// Logique d'interaction pour UCDetails.xaml
+    /// Logique d'interaction pour UCShortDetails.xaml
     /// </summary>
-    public partial class UCDetails : UserControl
+    public partial class UCShortDetails : UserControl
     {
-        public UCDetails()
+        public UCShortDetails()
         {
             InitializeComponent();
         }

@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="UCLibrary.UCCreate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UCLibrary"
+             mc:Ignorable="d"  d:DesignHeight="188" d:DesignWidth="580" Background="White"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="DefautImg" UriSource="Resources/index.jpg" />
+            <BitmapImage x:Key="FavoriteImg" UriSource="/Resources/checkedStar.png" />
+            <BitmapImage x:Key="NotFavoriteImg" UriSource="/Resources/uncheckedStar.png" />
+            <BitmapImage x:Key="OverFavoriteImg" UriSource="/Resources/hoverStar.png" />
+            <BitmapImage x:Key="Saveimg" UriSource="/Resources/saveIcon.png" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="0,0,0,0">
+        <GroupBox Header="Création" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Width="580">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="35"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="140">
+                    <Image Source="{Binding viewcontact.ContactImg, TargetNullValue={StaticResource DefautImg}}" Height="140" />
+                    <Button x:Name="importImg" Click="LoadImg_Click" Content="Importer"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" MinWidth="300">
+                    <DockPanel LastChildFill="False" Margin="0,0,0,0">
+                        <TextBlock  DockPanel.Dock="Left">Nom :</TextBlock>
+                        <TextBox  DockPanel.Dock="Right" MinWidth="200" Text="{Binding viewcontact.LastName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="False" Margin="0,10,0,0">
+                        <TextBlock DockPanel.Dock="Left" >Prénom :</TextBlock>
+                        <TextBox  DockPanel.Dock="Right" MinWidth="200" Text="{Binding viewcontact.FirstName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="False" Margin="0,10,0,0">
+                        <TextBlock DockPanel.Dock="Left" >Section :</TextBlock>
+                        <TextBox DockPanel.Dock="Right" MinWidth="200" Text="{Binding viewcontact.Section, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="False" Margin="0,10,0,0">
+                        <TextBlock DockPanel.Dock="Left" >Email :</TextBlock>
+                        <TextBox DockPanel.Dock="Right" MinWidth="200" Text="{Binding viewcontact.Emailadr, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="False" Margin="0,10,0,0">
+                        <TextBlock  DockPanel.Dock="Left">Téléphone :</TextBlock>
+                        <TextBox DockPanel.Dock="Right" MinWidth="200" Text="{Binding viewcontact.PhoneNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="False" Margin="0,10,0,0">
+                        <TextBlock DockPanel.Dock="Left" >Poste :</TextBlock>
+                        <TextBox DockPanel.Dock="Right" MinWidth="200" Text="{Binding viewcontact.PosteNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button Name="SaveContact" Click="SaveContact_Click">
+                        <Button.Content>
+                            <Image Source="{StaticResource Saveimg}"/>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

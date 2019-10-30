@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="UCLibrary.UCShortDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UCLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="200" Background="White">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="DefautImg" UriSource="Resources/index.jpg" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <!--<StackPanel HorizontalAlignment="Left" Width="150" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCDetails}}}">-->
+            <StackPanel HorizontalAlignment="Left" Width="60">
+                <Image Source="{Binding ContactImg, TargetNullValue={StaticResource DefautImg}}" />
+                <!--<Image Source="{StaticResource DefautImg }" Height="150" />-->
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                <TextBlock Text="{Binding LastName}" Margin="0,10,0,0"></TextBlock>
+                <TextBlock Text="{Binding FirstName}" Margin="0,10,0,0" ></TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

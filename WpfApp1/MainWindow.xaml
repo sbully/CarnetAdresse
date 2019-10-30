@@ -4,59 +4,119 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Uc="clr-namespace:UCLibrary;assembly=UCLibrary"
-        xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Gestionnaire de contacts" Height="450" Width="800" >
+        Title="Gestionnaire de contacts" Height="450" Width="800" 
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        ResizeMode="NoResize">
+    
     <Window.Resources>
-        <Style x:Key="headerStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Visibility" Value="Collapsed"/>
-        </Style>
+        <!--Image Resources-->
+        <BitmapImage x:Key="CreateImg" UriSource="/Resources/addIcon.png" />
+        <BitmapImage x:Key="DeleteImg" UriSource="/Resources/deleteIcon.png" />
+        <BitmapImage x:Key="EditImg" UriSource="/Resources/createIcon.png" />
 
-        <s:Double x:Key="DoubleTest">40</s:Double>
-        
-        
-        <BitmapImage x:Key="DefaultBitmap" UriSource="/Resources/defaultContact.png" />
-
+<!--Color Resources-->
         <SolidColorBrush x:Key="LightGray" Color="LightGray"/>
         <SolidColorBrush x:Key="LightBlue" Color="LightBlue"/>
+        <SolidColorBrush x:Key="BlueHorizon" Color="#FF4b6584"/>
+        <SolidColorBrush x:Key="Innuendo" Color="#FFA5b1C2"/>
         <SolidColorBrush x:Key="Black" Color="Black"/>
+        
+        <LinearGradientBrush x:Key="BlueGreyGradient" EndPoint="0,1">
+            <GradientStop Color=" #FF4B6584" Offset="0.0"/>
+            <GradientStop Color=" #FF526b89" Offset="0.5"/>
+            <GradientStop Color=" #FF59718f" Offset="1.0"/>
+        </LinearGradientBrush>
+
+        <!--Control Resources style-->
+        <Style x:Key="headerStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Hidden"/>
+        </Style>
+        
+        <Style x:Key="MenuTriBouton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource BlueGreyGradient}"/>
+            <Setter Property="Foreground" Value="{StaticResource Innuendo}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BlueHorizon}"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        
+        <Style x:Key="MenuIconeBouton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource BlueGreyGradient}"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
     </Window.Resources>
-    <!--<local:MainWindow>
-        <local:MainWindow.DefaultImg>
-            <StaticResource ResourceKey="DefaultBitmap"/>
-        </local:MainWindow.DefaultImg>
-    </local:MainWindow>-->
-    
     
     
     <DockPanel Name="DockPan" Background="{StaticResource LightGray}">
+        <!--Bar Menu-->
         <Menu Name="Menu" Height="25" DockPanel.Dock="Top">
-            <MenuItem Header="Fichier" Name="miFichier" Height="25" Width="50">
+            <MenuItem Header="Fichier" Name="MenuQuitter" Height="25" Width="50">
                 <MenuItem Header="Quitter" HorizontalAlignment="Left" Height="25" Width="140"/>
             </MenuItem>
-            <MenuItem Header="Edition" Name="miEdition" Height="25" Width="50">
-                <MenuItem x:Name="miNew" Header="Nouveau Contact" Height="25" Margin="0,0,0,0" HorizontalAlignment="Left" Width="190" />
-                <MenuItem x:Name="miEdit" Header="Editer Contact" HorizontalAlignment="Left" Height="25" Width="190" Margin="0,0,0,0" />
-                <MenuItem x:Name="miErase" Header="Supprimer Contact" HorizontalAlignment="Left" Height="25" Width="190" Margin="0,0,0,0"/>
+            <MenuItem Header="Edition" Name="MenuEdition" Height="25" Width="50">
+                <MenuItem x:Name="MenuNew" Header="Nouveau Contact" Height="25" Margin="0,0,0,0" HorizontalAlignment="Left" Width="190" />
+                <MenuItem x:Name="MenuEdit" Header="Editer Contact" HorizontalAlignment="Left" Height="25" Width="190" Margin="0,0,0,0" />
+                <MenuItem x:Name="MenuDelete" Header="Supprimer Contact" HorizontalAlignment="Left" Height="25" Width="190" Margin="0,0,0,0"/>
             </MenuItem>
-            <MenuItem Header="Aide" Name="miAide" Height="25" Width="50"/>
+            <MenuItem Header="Aide" Name="MenuAide" Height="25" Width="50"/>
         </Menu>
+        <!--Menu Bouton-->
+        <DockPanel DockPanel.Dock="Top" Height="40" Background="{StaticResource BlueGreyGradient}" LastChildFill="False">
+            
+            
+            <!--Bouton Gauche de trie suivant Favoris ou affichage complet des contacts-->
+            <StackPanel DockPanel.Dock ="Left" Orientation="Horizontal">
+                <Button Style="{StaticResource MenuTriBouton}" Content="Favorite" DockPanel.Dock="Left" Background="{StaticResource BlueGreyGradient}" Padding="10,0,10,0">
+                </Button>
+                <Button Style="{StaticResource MenuTriBouton}" Content="Contact" DockPanel.Dock="Left" Background="{StaticResource BlueGreyGradient}" Padding="10,0,10,0"/>
+            </StackPanel>
+            
+            
+            <!-- Bouton Droide Action Creation Edition Suppression Contact-->
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                <Button Style="{StaticResource MenuIconeBouton}" DockPanel.Dock="Right" Background="{StaticResource BlueGreyGradient}" Click="AddContact">
+                    <Button.Content>
+                        <Image Source="{StaticResource CreateImg}"/>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource MenuIconeBouton}"  DockPanel.Dock="Right" Background="{StaticResource BlueGreyGradient}" Click="EditContact">
+                    <Button.Content>
+                        <Image Source="{StaticResource EditImg}"/>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource MenuIconeBouton}" DockPanel.Dock="Right" Background="{StaticResource BlueGreyGradient}" Click="RemoveContact">
+                    <Button.Content>
+                        <Image Source="{StaticResource DeleteImg}"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            
+
+        </DockPanel>
+        <!--Piege de page-->
         <StackPanel DockPanel.Dock="Bottom" Height="25">
 
         </StackPanel>
-        <ListView DockPanel.Dock="Left" Width="168">
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource headerStyle}">
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <WrapPanel Name="DisplayArea" Background="White" DockPanel.Dock="Right">
+        
+        <!--Affichage de la liste des Contact-->
+        <Grid DockPanel.Dock="Left" Width="200" Background="White">
+            <Uc:UcListContact/>
+        </Grid>
+        <!--Affichage des User Controls Details Creation -->
+        <Grid Name="DisplayArea" Background="White" DockPanel.Dock="Right">
+
+            <ContentControl Content="{Binding UcLoad, UpdateSourceTrigger=PropertyChanged}"/>
+            <!--<Uc:UCDetails DataContext="{Binding viewContact, diag:PresentationTraceSources.TraceLevel=High}"/>-->
+            <!--<Uc:UCCreate/>-->
             
             
-            <Uc:UCDetails />
-            
-        </WrapPanel>
+        </Grid>
 
     </DockPanel>
 </Window>
