@@ -7,7 +7,8 @@
              xmlns:local="clr-namespace:UCLibrary"
              mc:Ignorable="d" 
               d:DesignWidth="200"
-             DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+             DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+             >
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type vm:ViewContact}">
             <local:UCShortDetails />
@@ -15,6 +16,7 @@
     </UserControl.Resources>
     
     <Grid Width="200" Background="White">
-        <ListView ItemsSource="{Binding ViewBook.ViewContactList}"/>
+        <!--<ListView ItemsSource="{Binding ViewBook.ViewContactList}"/>-->
+        <ListView SelectedItem="{Binding IsSelectedContact}" ItemsSource="{Binding ViewContactList, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

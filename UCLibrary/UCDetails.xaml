@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UCLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="188" d:DesignWidth="600" Background="White"
-             DataContext="{Binding ViewContact, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+             DataContext="{Binding IsSelectedContact, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
              >
     <UserControl.Resources>
         <ResourceDictionary>

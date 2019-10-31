@@ -15,7 +15,7 @@
         <StackPanel Orientation="Horizontal">
             <!--<StackPanel HorizontalAlignment="Left" Width="150" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCDetails}}}">-->
             <StackPanel HorizontalAlignment="Left" Width="60">
-                <Image Source="{Binding ContactImg, TargetNullValue={StaticResource DefautImg}}" />
+                <Image Source="{Binding ContactImg, TargetNullValue={StaticResource DefautImg}}" MaxWidth="60" MaxHeight="60"/>
                 <!--<Image Source="{StaticResource DefautImg }" Height="150" />-->
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">

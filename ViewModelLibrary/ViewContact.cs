@@ -29,6 +29,7 @@ namespace ViewModelLibrary
             this.Emailadr = _contact.Emailadr;
             this.PhoneNumber = _contact.PhoneNumber;
             this.PosteNumber = _contact.PosteNumber;
+            this.Favorite = _contact.Favorite;
             //string path = Path.Combine(directory, "ImageProfil", contact.Id.ToString());
             //string pathimg = Path.Combine(directory, "ImageProfil", (contact.Id + ".png"));
             //string pathSansExt = Path.GetFileNameWithoutExtension(path);
@@ -45,6 +46,7 @@ namespace ViewModelLibrary
                 ContactImg.UriSource = new Uri((filename), UriKind.RelativeOrAbsolute);
                 ContactImg.EndInit();
             }
+            
         }
 
         public ViewContact()
@@ -144,7 +146,8 @@ namespace ViewModelLibrary
                 LastName = viewContact.LastName,
                 PhoneNumber = viewContact.PhoneNumber,
                 PosteNumber = viewContact.PosteNumber,
-                Section = viewContact.Section
+                Section = viewContact.Section,
+               Favorite = viewContact.Favorite
             };
         }
 

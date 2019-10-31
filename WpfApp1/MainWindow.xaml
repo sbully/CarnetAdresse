@@ -72,9 +72,9 @@
             
             <!--Bouton Gauche de trie suivant Favoris ou affichage complet des contacts-->
             <StackPanel DockPanel.Dock ="Left" Orientation="Horizontal">
-                <Button Style="{StaticResource MenuTriBouton}" Content="Favorite" DockPanel.Dock="Left" Background="{StaticResource BlueGreyGradient}" Padding="10,0,10,0">
+                <Button Style="{StaticResource MenuTriBouton}" Content="Favorite" DockPanel.Dock="Left" Background="{StaticResource BlueGreyGradient}" Padding="10,0,10,0" Click="FavoriteList_Onclick">
                 </Button>
-                <Button Style="{StaticResource MenuTriBouton}" Content="Contact" DockPanel.Dock="Left" Background="{StaticResource BlueGreyGradient}" Padding="10,0,10,0"/>
+                <Button Style="{StaticResource MenuTriBouton}" Content="Contact" DockPanel.Dock="Left" Background="{StaticResource BlueGreyGradient}" Padding="10,0,10,0" Click="ContactList_OnClick"/>
             </StackPanel>
             
             
@@ -114,8 +114,6 @@
             <ContentControl Content="{Binding UcLoad, UpdateSourceTrigger=PropertyChanged}"/>
             <!--<Uc:UCDetails DataContext="{Binding viewContact, diag:PresentationTraceSources.TraceLevel=High}"/>-->
             <!--<Uc:UCCreate/>-->
-            
-            
         </Grid>
 
     </DockPanel>

@@ -16,10 +16,22 @@ namespace WpfApp1
         private ObservableCollection<ViewContact> viewContactList;
         public ObservableCollection<ViewContact> ViewContactList
         {
-            get { return ViewContactList; }
-            set { ViewContactList = value; }
+            get { return viewContactList; }
+            set
+            {
+                viewContactList = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(ViewContactList)));
+            }
         }
 
+        private ViewContact isSelectedContact;
+        public ViewContact IsSelectedContact
+        {
+            get { return isSelectedContact; }
+            set { isSelectedContact = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(IsSelectedContact)));
+            }
+        }
 
         private ViewContact viewContact;
         public ViewContact ViewContact
@@ -58,33 +70,104 @@ namespace WpfApp1
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
+
         public MainWindow()
         {
-            UcLoad = new UCCreate();
-            //InitViewContact();
+            UcLoad = new UCDetails();
             initViewBook();
             InitializeComponent();
         }
-
-        //#region INITIALISATION VIEW CONTACT
-        //public void InitViewContact()
-        //{
-        //    viewContact = new ViewContact(new Contact());
-        //}
-        //#endregion
 
         #region INITIALISATION VIEWBOOK
         private void initViewBook()
         {
             ObservableCollection<Contact> malist = new ObservableCollection<Contact>
             {
-                new Contact(),
-                new Contact(),
-                new Contact(),
-                new Contact()
+                new Contact{
+            LastName = "Doe",
+            FirstName = "Jeanne",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = true
+                },
+                new Contact{
+            LastName = "Doe",
+            FirstName = "John",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = false
+                },
+                new Contact{
+            LastName = "Doe",
+            FirstName = "Jack",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = false
+                },
+                new Contact{
+            LastName = "Doe",
+            FirstName = "Johnny",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = true
+                },
+                new Contact{
+            LastName = "Doe",
+            FirstName = "Jennifer",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = false
+                },
+                 new Contact{
+            LastName = "Doe",
+            FirstName = "John",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = false
+                },
+                new Contact{
+            LastName = "Doe",
+            FirstName = "Jack",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = false
+                },
+                new Contact{
+            LastName = "Doe",
+            FirstName = "Johnny",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = true
+                },
+                new Contact{
+            LastName = "Doe",
+            FirstName = "Jennifer",
+            Section = "CRM",
+            Emailadr = "jdoe@gmail.com",
+            PhoneNumber = "0102030405",
+            PosteNumber = "1234",
+            Favorite = false
+                }
             };
             ContactBook contactbook = new ContactBook(malist);
             ViewBook = new ViewContactBook(contactbook);
+            this.ViewContactList = ViewBook.ViewContactList;
 
         }
         #endregion
@@ -108,12 +191,12 @@ namespace WpfApp1
 
         private void FavoriteList_Onclick(object sender, RoutedEventArgs e)
         {
-            //this.ViewContactList = ViewBook.ViewContactList.Where(x => x.Favorite == true);
+            this.ViewContactList = new ObservableCollection<ViewContact>(ViewBook.ViewContactList.Where(x => x.Favorite == true).ToList());
         }
 
         private void ContactList_OnClick(object sender, RoutedEventArgs e)
         {
-
+            this.ViewContactList = ViewBook.ViewContactList;
         }
 
 
